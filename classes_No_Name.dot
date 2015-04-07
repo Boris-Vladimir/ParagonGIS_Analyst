@@ -1,0 +1,55 @@
+digraph "classes_No_Name" {
+charset="utf-8"
+rankdir=BT
+"0" [label="{AllQuery|operator\ltuple_query : list\l|cgi_lat_lon_tec_date()\l}", shape="record"];
+"1" [label="{CGI|address : NoneType\lazimute : NoneType\lcgi : NoneType\ldate : NoneType\llatitude : NoneType\llocal : NoneType\llongitude : NoneType\lname : NoneType\ltechnology : NoneType\lzip : NoneType\l|get_address()\lget_azimute()\lget_cgi()\lget_date()\lget_lat()\lget_local()\lget_lon()\lget_name()\lget_technology()\lget_zip()\lset_address()\lset_azimute()\lset_cgi()\lset_date()\lset_lat()\lset_local()\lset_lon()\lset_name()\lset_technology()\lset_zip()\l}", shape="record"];
+"2" [label="{CgiRep|cgi\lquery : NoneType\lresult : NoneType\l|build_cgi()\lget_query_db()\l}", shape="record"];
+"3" [label="{CgiTimeFilter|last_row : NoneType, list\lline : NoneType, list\ltime\lxls_filtered\lxls_name\lxls_original\l|filter()\l}", shape="record"];
+"4" [label="{Colors|colors : list\l|get_colors()\l}", shape="record"];
+"5" [label="{Conversor|append_to_post : bool\lcgi_db_line_1 : NoneType\lcgi_db_line_2 : NoneType\lfilter_cgi : bool\lfilter_list : list\lfinal_excel\lfirst_date : NoneType\llast_cgi : NoneType\lline : list\lno_results_counter : int\lno_results_excel\lparagon_line_1 : list\lparagon_line_2 : list\lparagon_titles_row : list\lpost_final_lines : list\lprev_final_line : list\lprevious_line_1 : list\lprevious_line_2 : list\luse_no_results_excel : bool\lxls\l|build_icon_file()\lbuild_polygon_file()\l}", shape="record"];
+"6" [label="{DateQuadQuery|operator\ltuple_query : list\l|cgi_lat_lon_date()\lcgi_lat_tec_date()\lcgi_lon_tec_date()\llat_lon_tec_date()\l}", shape="record"];
+"7" [label="{DateSingleDualQuery|operator\ltuple_query : list\l|cgi_date()\ldate()\llat_date()\llon_date()\ltec_date()\l}", shape="record"];
+"8" [label="{DateTripleQuery|operator\ltuple_query : list\l|cgi_lat_date()\lcgi_lon_date()\lcgi_tec_date()\llat_lon_date()\llat_tec_date()\llon_tec_date()\l}", shape="record"];
+"9" [label="{Db|cur : NoneType\ldb : NoneType\l|close()\lconnect()\lexport()\lupdate()\l}", shape="record"];
+"10" [label="{DualQuery|tuple_query : list\l|cgi_lat()\lcgi_lon()\lcgi_tec()\llat_lon()\llat_tec()\llon_tec()\l}", shape="record"];
+"11" [label="{ExcelFinal|azimute : NoneType\ldb_line\licon : NoneType\lline\lparagon_line\lpolygon : NoneType\l|get_line()\lset_line()\l}", shape="record"];
+"12" [label="{ExcelLine|line : list\l|get_line()\lset_value()\l}", shape="record"];
+"13" [label="{Icon|file_name : NoneType, str, tuple, Open\lheading : int\lline_string : str\ln_icon : int\lscale : float\lset_file_name : NoneType, str, tuple, Open\lset_filter_list : list\l|get_heading()\lget_line_string()\lget_n_icon()\lget_scale()\lset_heading()\lset_line_string()\lset_n_icon()\lset_scale()\l}", shape="record"];
+"14" [label="{InfoConstruction|color : NoneType\lfile_name : NoneType\l|get_color()\lget_file_name()\lset_color()\lset_file_name()\l}", shape="record"];
+"15" [label="{InfoParagon|info\lnum_cells\lworkbook : NoneType, Book\lworksheet\l|get_n_rows()\lget_next_line()\lget_workbook()\lget_worksheet_names()\lopen_worksheet()\lopen_xls()\lreset_counter()\l}", shape="record"];
+"16" [label="{MyDialog|e1 : Entry\le2 : Entry\le3 : Entry\l|apply()\lbody()\l}", shape="record"];
+"17" [label="{NoResults|line\l|get_line()\lset_line()\l}", shape="record"];
+"18" [label="{Polygon|altitude : NoneType\lamplitude : NoneType\lfile_name : NoneType, str, tuple, Open\lradius : NoneType\lset_file_name : NoneType, str, tuple, Open\lset_filter_list : list\l|get_altitude()\lget_amplitude()\lget_radius()\lset_altitude()\lset_amplitude()\lset_radius()\l}", shape="record"];
+"19" [label="{PostNoResults|\l|set_line()\l}", shape="record"];
+"20" [label="{QuadQuery|tuple_query : list\l|cgi_lat_lon_tec()\l}", shape="record"];
+"21" [label="{Query|db\li : int\lquery\lresult : list\ltuple_result : list\l|fetch_all()\lget_result()\lto_all_tuple()\lto_dual_tuple()\lto_quad_tuple()\lto_triple_tuple()\l}", shape="record"];
+"22" [label="{SingleQuery|\l|cgi()\llat()\llon()\ltec()\l}", shape="record"];
+"23" [label="{TripleQuery|tuple_query : list\l|cgi_lat_lon()\lcgi_lat_tec()\lcgi_lon_tec()\llat_lon_tec()\l}", shape="record"];
+"24" [label="{UiControler|filter_list : list\linput_file_name : NoneType, str, tuple, Open\l|db_or_kmz()\lfilter_choices()\licon_or_polygon()\lparagon_data()\l}", shape="record"];
+"25" [label="{XlsReader|l_counter : int\lnum_cells : NoneType\lnum_rows : NoneType\lworkbook : NoneType, Book\lworksheet : NoneType\l|get_n_rows()\lget_next_line()\lget_workbook()\lget_worksheet_names()\lopen_worksheet()\lopen_xls()\lreset_l_conter()\l}", shape="record"];
+"26" [label="{XlsWriter|row_counter : int\lsheet_name : NoneType\lworkbook : Workbook\lworksheet : NoneType, int, DumpWorksheet, LXMLWorksheet, Worksheet\l|add_sheet()\lsave_workbook()\lwrite_line()\l}", shape="record"];
+"27" [label="{window|b0\lb1\lb2\lcgi_time : IntVar\lcor_icon : StringVar\lf : Frame\lfile_name : str, tuple, Open\ll1\ll6\llast_dir : str\lmaster : Tk\lmessage : StringVar\lscale_icon : DoubleVar\l|}", shape="record"];
+"0" -> "21" [arrowhead="empty", arrowtail="none"];
+"6" -> "21" [arrowhead="empty", arrowtail="none"];
+"7" -> "21" [arrowhead="empty", arrowtail="none"];
+"8" -> "21" [arrowhead="empty", arrowtail="none"];
+"10" -> "21" [arrowhead="empty", arrowtail="none"];
+"13" -> "14" [arrowhead="empty", arrowtail="none"];
+"18" -> "14" [arrowhead="empty", arrowtail="none"];
+"19" -> "17" [arrowhead="empty", arrowtail="none"];
+"20" -> "21" [arrowhead="empty", arrowtail="none"];
+"22" -> "21" [arrowhead="empty", arrowtail="none"];
+"23" -> "21" [arrowhead="empty", arrowtail="none"];
+"1" -> "2" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="cgi", style="solid"];
+"1" -> "5" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="cgi_db_line_1", style="solid"];
+"1" -> "5" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="cgi_db_line_2", style="solid"];
+"9" -> "21" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="db", style="solid"];
+"12" -> "11" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="line", style="solid"];
+"12" -> "17" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="line", style="solid"];
+"15" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="xls_original", style="solid"];
+"15" -> "5" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="xls", style="solid"];
+"25" -> "15" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="info", style="solid"];
+"26" -> "3" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="xls_filtered", style="solid"];
+"26" -> "5" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="no_results_excel", style="solid"];
+"26" -> "5" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="final_excel", style="solid"];
+}
