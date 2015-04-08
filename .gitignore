@@ -1,0 +1,6 @@
+# git ignore file
+ParagonGIS_Analyst.pyproj
+ParagonGIS_Analyst.sln
+ParagonGIS_Analyst.v12.suo
+__pycache__/desktop.ini
+__pycache__/jdcal.cpython-34.pyc
