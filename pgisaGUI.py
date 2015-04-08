@@ -146,7 +146,7 @@ class window(object):
             message = 'Ficheiro EXCEL carregado em memória.\n\
             Defina as propriedades do Icon'
             self.message.set(message)
-            MyDialog(self.master)
+            IconDialog(self.master)
             self.cor_icon.set(icon_color)
             self.scale_icon.set(icon_scale)
             self.cgi_time.set(cgi_time)
@@ -778,7 +778,7 @@ class window(object):
         print(self.query_dict)
 
 
-class MyDialog(simpledialog.Dialog):
+class IconDialog(simpledialog.Dialog):
 
     def body(self, master):
         # --- Labels ----------------------------------------------------------
@@ -796,32 +796,6 @@ class MyDialog(simpledialog.Dialog):
         self.e1 = Entry(master)
         self.e2 = Entry(master)
         self.e3 = Entry(master)
-        self.e1.grid(row=1, column=1)
-        self.e2.grid(row=2, column=1)
-        self.e3.grid(row=4, column=1)
-        #return self.e1 # initial focus
-
-    def apply(self):
-        global icon_color, icon_scale, cgi_time
-        icon_color = self.e1.get()
-        icon_scale = float(self.e2.get())
-        cgi_time = int(self.e3.get())
-
-
-class MyDialog(simpledialog.Dialog):
-
-    def body(self, master):
-
-        Label(master, text='ICON').grid(row=0, columnspan=2)
-        Label(master, text="Cor:").grid(row=1)
-        Label(master, text="Escala:").grid(row=2)
-        Label(master, text='Retirar CGIs repetidas').grid(row=3, columnspan=2)
-        Label(master, text='Tempo (min)').grid(row=4)
-
-        self.e1 = Entry(master)
-        self.e2 = Entry(master)
-        self.e3 = Entry(master)
-
         self.e1.grid(row=1, column=1)
         self.e2.grid(row=2, column=1)
         self.e3.grid(row=4, column=1)
