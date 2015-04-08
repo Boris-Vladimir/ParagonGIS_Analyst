@@ -171,7 +171,7 @@ class window(object):
             '''
             self.message.set("\nA processar...")
             '''
-            ui = UiControler()  # start interface
+            ui = Controler()  # start interface
             ui.input_file_name = self.file_name
             filter_list = [self.cgi_time.get(), 'mvn', '234', 'n', None]
             ui.filter_list = filter_list
@@ -181,7 +181,7 @@ class window(object):
             kmz = ui.icon_or_polygon(color, scale)
             kmz.file_name = ui.input_file_name
             # make the new Excel file -----------------------------------------
-            kmz_file = Conversor()
+            kmz_file = BusinessLogic()
             if isinstance(kmz, Icon):
                 kmz_file.build_icon_file(kmz, filter_list)
             else:
@@ -771,7 +771,7 @@ class window(object):
                 msg += "  - Excel para KMZ de Polígonos\n"
 
 
-        # DEBUG ########################################
+        # DEBUG PRINTS ########################################
         print(msg)
         self.msg.set(msg)
         print()
@@ -834,7 +834,7 @@ class MyDialog(simpledialog.Dialog):
         cgi_time = int(self.e3.get())
 
 
-class UiControler(object):
+class Controler(object):
 
     def __init__(self):
         #self.ui = UI()
@@ -1196,7 +1196,7 @@ class CGI(object):
         return self.date
 
 
-class CgiRep(object):
+class InfoCgi(object):
 
     def __init__(self):
         self.cgi = CGI()
@@ -1286,7 +1286,7 @@ class Colors(object):
         return self.colors
 
 
-class Conversor(object):
+class BusinessLogic(object):
     
     #==========================================================================
     # CLASS CONSTRUCTOR
@@ -1614,19 +1614,19 @@ class Conversor(object):
         # empty the paragon_lines
         self.paragon_line_1 = []
         self.paragon_line_2 = []
-        # tipo produto [0]         ---> balÃ£o_kmz[7] Tipo
+        # tipo produto [0]         ---> balão_kmz[7] Tipo
         self.paragon_line_1.append(self.line[tipo_i])
         self.paragon_line_2.append(self.line[tipo_i])
-        # direcÃ§Ã£o [1]             ---> balÃ£o_kmz[8] DirecÃ§Ã£o
+        # direcção [1]             ---> balão_kmz[8] Direcção
         self.paragon_line_1.append(self.line[dir_i])
         self.paragon_line_2.append(self.line[dir_i])
-        # produto nÂº [3]           ---> balÃ£o_kmz[9] Produto
+        # produto nº [3]           ---> balão_kmz[9] Produto
         self.paragon_line_1.append(self.line[prod_i])
         self.paragon_line_2.append(self.line[prod_i])
-        # hora [4][11:] e [5][11:] ---> balÃ£o_kmz[0] Name - tb NAME do Ponto
+        # hora [4][11:] e [5][11:] ---> balão_kmz[0] Name - tb NAME do Ponto
         self.paragon_line_1.append(self.line[gdh_1_i][11:])
         self.paragon_line_2.append(self.line[gdh_2_i][11:])
-        # dia [4][:10] e [5][:10]  ---> balÃ£o_kmz[1] Dia
+        # dia [4][:10] e [5][:10]  ---> balão_kmz[1] Dia
         self.paragon_line_1.append(self.line[gdh_1_i][:10])
         self.paragon_line_2.append(self.line[gdh_2_i][:10])
         # cell [10] e [11]         ---> DESCRIPTION do ponto
@@ -1634,7 +1634,7 @@ class Conversor(object):
         self.paragon_line_2.append(self.line[cgi_2_i])
 
 
-    def __not_empty(self, _list): # nÃo preciso disto basta fazer if _list se tiver alguma coisa retorna True, vazia False
+    def __not_empty(self, _list): # não preciso disto basta fazer if _list se tiver alguma coisa retorna True, vazia False
         '''
         check if a list is or not empty
         '''
@@ -1646,7 +1646,7 @@ class Conversor(object):
         '''
         cria lista com os campos do excel do paragon
         '''
-        query = CgiRep()
+        query = InfoCgi()
         query.get_query_db([cgi])
 
         return query.build_cgi()
@@ -1690,71 +1690,6 @@ class Conversor(object):
             self.filter_cgi = True
         if len(self.filter_list[1]) != 3:
             self.__filter_operator()
-
-    '''
-    def __filter_cgi(self):
-        
-        [tipo, direcção, nº produto, hora, dia, cgi]
-        
-        secs = int(self.filter_list[0]) * 60
-
-        # Build lines variables ----------------------------------------------
-        if self.__not_empty(self.previous_line_1):
-            previous_1 = self.previous_line_1
-            time_p1 = previous_1[4] + ' ' + previous_1[3]
-            p1_same_cgi_1 = previous_1[5] == self.paragon_line_1[5]
-        if self.__not_empty(self.previous_line_2):
-            previous_2 = self.previous_line_2
-            time_p2 = previous_2[4] + ' ' + previous_2[3]
-            p2_same_cgi_1 = previous_2[5] == self.paragon_line_1[5]
-            p2_same_cgi_2 = previous_2[5] == self.paragon_line_2[5]
-
-        time_1 = self.paragon_line_1[4] + ' ' + self.paragon_line_1[3]
-        time_2 = self.paragon_line_2[4] + ' ' + self.paragon_line_2[3]
-        same_cgi = self.paragon_line_1[5] == self.paragon_line_2[5]
-
-        # Compares times and cgis to filter ----------------------------------
-        if same_cgi and self.__calc_sec_diference(time_1, time_2) < secs:
-            self.paragon_line_2 = []
-
-        if self.__not_empty(self.previous_line_2):
-            diff = self.__calc_sec_diference(time_p1, time_1)
-            diff_1 = self.__calc_sec_diference(time_p2, time_1)
-
-            if p2_same_cgi_1 and diff_1 < secs:
-                self.paragon_line_1 = []
-
-            if p1_same_cgi_1 and diff < secs and p2_same_cgi_2:
-                self.paragon_line_1 = []
-                self.paragon_line_2 = []
-
-        if self.__not_empty(self.previous_line_1) and not \
-                self.__not_empty(self.paragon_line_2) and \
-                self.__not_empty(self.paragon_line_1):
-            diff = self.__calc_sec_diference(time_p1, time_1)
-            last_cgi = self.paragon_line_1[5] == self.last_cgi
-            if p1_same_cgi_1 and last_cgi and diff < secs:
-                self.paragon_line_1 = []
-
-    def __calc_sec_diference(self, time_1, time_2):
-        
-        #str, str -> int
-        #Transforms two datetime values from the paragon excel file in python
-        #datetime objects, the calculate the difference between the two and
-        #return that diference in seconds.
-        #time_1 and time_2 are two strings with datetime values
-        
-        fmt = '%d.%m.%Y %H:%M:%S'  # dia.mes.ano hora:minutos:segundos
-        datetime_1 = datetime.strptime(time_1, fmt)
-        datetime_2 = datetime.strptime(time_2, fmt)
-
-        if datetime_2 > datetime_1:
-            dif = datetime_2 - datetime_1
-        else:
-            dif = datetime_1 - datetime_2
-
-        return dif.seconds
-        '''
 
     def __filter_operator(self):
         '''
